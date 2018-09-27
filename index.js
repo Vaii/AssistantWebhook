@@ -40,7 +40,6 @@ server.post('/assistant', (req, res) =>{
 
             return res.json({
                 fulfillmentText: "the weather in " + citytoSearch + " is " + String(JSON.parse(data).main.temp),
-                displayText: String(JSON.parse(data).main.temp),
                 source: 'weather'
             });
         });
