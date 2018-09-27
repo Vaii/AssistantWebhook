@@ -14,7 +14,7 @@ server.use(bodyParser.json());
 server.post('/assistant', (req, res) =>{
 
     var citytoSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.City ? req.body.result.parameters.City : 'Eindhoven';
-    console.log(req.body)
+    console.log(req)
     res.send("hallo" + citytoSearch)
 });
 
