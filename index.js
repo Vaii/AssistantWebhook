@@ -13,7 +13,7 @@ server.use(bodyParser.json());
 
 server.post('/assistant', (req, res) =>{
 
-    var city = req.body.result.parameter.City
+    var city = req.body.result && req.body.result.parameters && req.body.result.parameters.City ? req.body.result.parameters.City : 'Eindhoven';
     res.send("hallo" + city)
 });
 
