@@ -35,7 +35,7 @@ server.post('/assistant', (req, res) =>{
             var arrayLen = response.payload.google.richResponse.items.length;
 
             for(var i = 0, len = arrayLen; i < len; i++ ){
-                response.payload.google.richResponse.items[i] = String(Json.parse(data).main.temp);
+                response.payload.google.richResponse.items[i] = String(JSON.parse(data).main.temp);
                 console.log(response.payload.google.richResponse.items[i])
             }
 
