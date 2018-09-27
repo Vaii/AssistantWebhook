@@ -32,12 +32,8 @@ server.post('/assistant', (req, res) =>{
             let response = JSON.parse(rawdata);
             console.log(response);
 
-            var arrayLen = response.payload.google.richResponse.items.length;
-
-            for(var i = 0, len = arrayLen; i < len; i++ ){
-                response.payload.google.richResponse.items[i].simpleResponse.textToSpeech = String(JSON.parse(data).main.temp);
-                console.log(response.payload.google.richResponse.items[i])
-            }
+            response.payload.google.richResponse.items[0].simpleResponse.textToSpeech = String(JSON.parse(data).main.temp);
+            console.log(response.payload.google.richResponse.items[0].simpleResponse.textToSpeech)
 
 
             res.send(response);
