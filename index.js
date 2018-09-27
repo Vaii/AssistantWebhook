@@ -32,7 +32,7 @@ server.post('/assistant', (req, res) =>{
             let response = JSON.parse(rawdata);
             console.log(response);
 
-            response.payload.google.richResponse.items[0].simpleResponse.textToSpeech = String(JSON.parse(data).main.temp);
+            response.payload.google.richResponse.items[0].simpleResponse.textToSpeech = "The weather in " + citytoSearch + " is: " + String(JSON.parse(data).main.temp);
             console.log(response.payload.google.richResponse.items[0].simpleResponse.textToSpeech)
 
 
