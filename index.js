@@ -24,10 +24,12 @@ server.post('/assistant', (req, res) =>{
         });
 
         resp.on('end', () => {
-            res.send(JSON.parse(data).main.temp);
+            console.log(JSON.parse(data).main.temp);
+            res.send(String(JSON.parse(data).main.temp));
         });
 
     }).on("error", (err) => {
+        console.log(err)
         res.send(null, "something went wrong")
     });
 
