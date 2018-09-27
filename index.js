@@ -17,7 +17,7 @@ server.post('/assistant', (req, res) =>{
     var citytoSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.City ? req.body.queryResult.parameters.City : 'Eindhoven';
 
     let data = '';
-    http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&unit=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
+    http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&units=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
 
 
         resp.on('data', (chunk) => {
