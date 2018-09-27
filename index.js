@@ -1,63 +1,21 @@
 'use strict';
 
+const express = require('express');
+const bodyParser = require('body-parser');
+const http = require('http');
 
-const functions = require('firebase-functions');
-const {WebhookClient} = require('dialogflow-fulfillment');
-const {Card, Suggestion} = require('dialogflow-fulfillment');
+const server = express();
+server.use(bodyParser.urlencoded({
+    extended:true
+}));
 
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
+server.use(bodyParser.json());
 
-    const agent = new WebhookClient({ request, response });
+server.post('/assistant', (req, res) =>{
 
-
-    const checkWeather = function (arg, callback,){
-
-
-        const http = require('http');
-
-        let data = '';
-
-
-        http.get('http://api.openweathermap.org/data/2.5/weather?q=' + arg +'&units=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
-
-
-            resp.on('data', (chunk) => {
-                data += chunk;
-            });
-
-
-            resp.on('end', () => {
-                callback(JSON.parse(data).min.temp)
-            });
-
-        }).on("error", (err) => {
-            callback(null, "something went wrong");
-        });
-
-
-
-    };
-
-    function getWeather(agent){
-
-        var city = agent.parameters.City;
-
-        checkWeather(city, function(data){
-            agent.add(String(data));
-        })
-    }
-
-    let intentMap = new Map();
-    intentMap.set('Weather', getWeather);
-    agent.handleRequest(intentMap);
+    res.send("hallo")
 });
 
-
-//
-// exports.helloWorld = (req , res) => {
-//
-//     checkWeather("weert",  function(data) {
-//
-//             res.send(String(data.main.temp));
-//     }
-// )};
+server.listen((process.env.PORT || 8000), ()=>{
+    console.log("Server is up and running...")
+});
