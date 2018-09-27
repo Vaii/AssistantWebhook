@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
+const fs = require('fs');
 
 const server = express();
 server.use(bodyParser.urlencoded({
@@ -26,11 +27,17 @@ server.post('/assistant', (req, res) =>{
         resp.on('end', () => {
             console.log(JSON.parse(data).main.temp);
             console.log(citytoSearch);
-            res.send(JSON.parse(data).main.temp);
+
+            let rawdata = fs.readFileSync('response.json');
+            let response = JSON.parse(rawdata);
+            console.log(response);
+            response.payload.google.richResponse.items.simpleResponse.textToSpeech = String(JSON.parse(data).main.temp);
+            console.log(response);
+            res.send(response);
         });
 
     }).on("error", (err) => {
-        console.log(err)
+        console.log(err);
         res.send(null, "something went wrong")
     });
 
