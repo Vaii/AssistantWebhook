@@ -13,8 +13,9 @@ server.use(bodyParser.json());
 
 server.post('/assistant', (req, res) =>{
 
-    var city = req.body.result && req.body.result.parameters && req.body.result.parameters.City ? req.body.result.parameters.City : 'Eindhoven';
-    res.send("hallo" + city)
+    var citytoSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.City ? req.body.result.parameters.City : 'Eindhoven';
+    console.log(req.body.result.parameters.City);
+    res.send("hallo" + citytoSearch)
 });
 
 server.listen((process.env.PORT || 8000), ()=>{
