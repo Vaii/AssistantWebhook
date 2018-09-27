@@ -13,7 +13,8 @@ server.use(bodyParser.json());
 
 server.post('/assistant', (req, res) =>{
 
-    res.send("hallo")
+    var city = req.body.result.parameter.City
+    res.send("hallo" + city)
 });
 
 server.listen((process.env.PORT || 8000), ()=>{
