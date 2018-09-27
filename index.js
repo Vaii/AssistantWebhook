@@ -31,7 +31,7 @@ server.post('/assistant', (req, res) =>{
             let rawdata = fs.readFileSync('response.json');
             let response = JSON.parse(rawdata);
             console.log(response);
-            response.payload.google.richResponse.items.simpleResponse.textToSpeech = String(JSON.parse(data).main.temp);
+            response.payload.google.richResponse.items["simpleResponse"].textToSpeech = String(JSON.parse(data).main.temp);
             console.log(response);
             res.send(response);
         });
