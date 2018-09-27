@@ -13,10 +13,10 @@ server.use(bodyParser.json());
 
 server.post('/assistant', (req, res) =>{
 
-    var citytoSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.City ? req.body.result.parameters.City : 'Eindhoven';
+    var citytoSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.City ? req.body.queryResult.parameters.City : 'Eindhoven';
 
     let data = '';
-    http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
+    http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&unit=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
 
 
         resp.on('data', (chunk) => {
@@ -25,7 +25,8 @@ server.post('/assistant', (req, res) =>{
 
         resp.on('end', () => {
             console.log(JSON.parse(data).main.temp);
-            res.send(String(JSON.parse(data).main.temp));
+            console.log(citytoSearch);
+            res.send(JSON.parse(data).main.temp);
         });
 
     }).on("error", (err) => {
