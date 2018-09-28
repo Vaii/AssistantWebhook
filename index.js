@@ -18,7 +18,7 @@ server.post('/assistant', (req, res) =>{
     let data = '';
     http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&units=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
 
-        console.log(req.param('City'));
+        console.log(req.params.City);
         resp.on('data', (chunk) => {
             data += chunk;
         });
