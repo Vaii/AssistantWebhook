@@ -13,8 +13,8 @@ server.use(bodyParser.json());
 
 server.post('/assistant', (req, res) =>{
 
-    console.log(req.body)
-    let action = req.body.queryResult && req.body.queryResult.action ? req.queryResult.action : null;
+    console.log(req.body.queryResult.action);
+    let action = req.body.queryResult && req.body.queryResult.action ;
 
     if(action === "getWeather"){
 
