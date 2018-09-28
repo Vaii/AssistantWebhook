@@ -1,14 +1,28 @@
 {
-  "expectUserResponse": true,
-  "systemIntent": {
-    "intent": "actions.intent.PERMISSION",
-    "data": {
-      "@type": "type.googleapis.com/google.actions.v2.PermissionValueSpec",
-      "optContext": "To deliver your order",
-      "permissions": [
-        "NAME",
-        "DEVICE_PRECISE_LOCATION"
-      ]
+  "speech": "PLACEHOLDER_FOR_PERMISSION",
+  "contextOut": [
+    {
+      "name": "_actions_on_google_",
+      "lifespan": 100,
+      "parameters": {}
+    }
+  ],
+  "data": {
+    "google": {
+      "expect_user_response": true,
+      "no_input_prompts": [],
+      "is_ssml": false,
+      "system_intent": {
+        "intent": "assistant.intent.action.PERMISSION",
+        "spec": {
+          "permission_value_spec": {
+            "opt_context": "To locate you",
+            "permissions": [
+              "DEVICE_PRECISE_LOCATION"
+            ]
+          }
+        }
+      }
     }
   }
 }
