@@ -13,32 +13,41 @@ server.use(bodyParser.json());
 
 server.post('/assistant', (req, res) =>{
 
-    var citytoSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.City ? req.body.queryResult.parameters.City : 'Eindhoven';
+    var action = req.queryResult.action ? req.queryResult.action : null;
 
-    let data = '';
-    http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&units=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
+    if(action === "getWeather"){
 
-        console.log(req.params.City);
-        resp.on('data', (chunk) => {
-            data += chunk;
-        });
+        var citytoSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.City ? req.body.queryResult.parameters.City : 'Eindhoven';
 
-        resp.on('end', () => {
-            console.log(JSON.parse(data).main.temp);
-            console.log(citytoSearch);
-            console.log(req.body.get)
+        let data = '';
+        http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&units=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
 
-            return res.json({
-                fulfillmentText: "the weather in " + citytoSearch + " is " + String(JSON.parse(data).main.temp) + " degrees",
-                source: 'weather'
+            console.log(req.params.City);
+            resp.on('data', (chunk) => {
+                data += chunk;
             });
+
+            resp.on('end', () => {
+                console.log(JSON.parse(data).main.temp);
+                console.log(citytoSearch);
+
+                return res.json({
+                    fulfillmentText: "the weather in " + citytoSearch + " is " + String(JSON.parse(data).main.temp) + " degrees",
+                    source: 'weather'
+                });
+            });
+
+        }).on("error", (err) => {
+            console.log(err);
+            res.send(null, "something went wrong")
         });
+    }else if(action === "getLocation"){
 
-    }).on("error", (err) => {
-        console.log(err);
-        res.send(null, "something went wrong")
-    });
-
+        res.json({
+            context: "To know your location",
+            permissions: ['NAME' , 'DEVICE__PRECISE_LOCATION'],
+        });
+    }
 });
 
 server.listen((process.env.PORT || 8000), ()=>{
