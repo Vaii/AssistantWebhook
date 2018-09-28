@@ -13,11 +13,12 @@ server.use(bodyParser.json());
 
 server.post('/assistant', (req, res) =>{
 
-    var action = req.body.queryResult && req.body.queryResult.action ? req.queryResult.action : null;
+    console.log(req.body)
+    let action = req.body.queryResult && req.body.queryResult.action ? req.queryResult.action : null;
 
     if(action === "getWeather"){
 
-        var citytoSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.City ? req.body.queryResult.parameters.City : 'Eindhoven';
+        let citytoSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.City ? req.body.queryResult.parameters.City : 'Eindhoven';
 
         let data = '';
         http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&units=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
