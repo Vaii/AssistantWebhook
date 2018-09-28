@@ -1,20 +1,14 @@
 {
-  "source": "webhook",
-  "payload": {
-    "google": {
-      "expectUserResponse": true,
-      "systemIntent": {
-        "intent": "actions.intent.PERMISSION",
-        "data": {
-          "@type": "type.googleapis.com/google.actions.v2.PermissionValueSpec",
-          "permissions": [
-            "UPDATE"
-          ],
-          "updatePermissionValueSpec": {
-            "intent": "food_intent_yes"
-          }
-        }
-      }
+  "expectUserResponse": true,
+  "systemIntent": {
+    "intent": "actions.intent.PERMISSION",
+    "data": {
+      "@type": "type.googleapis.com/google.actions.v2.PermissionValueSpec",
+      "optContext": "To deliver your order",
+      "permissions": [
+        "NAME",
+        "DEVICE_PRECISE_LOCATION"
+      ]
     }
   }
 }
