@@ -2,15 +2,6 @@
   "payload": {
     "google": {
       "expectUserResponse": true,
-      "richResponse": {
-        "items": [
-          {
-            "simpleResponse": {
-              "textToSpeech": "I want your location, is that okay."
-            }
-          }
-        ]
-      },
       "systemIntent": {
         "intent": "actions.intent.PERMISSION",
         "data": {

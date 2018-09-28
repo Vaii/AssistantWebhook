@@ -47,6 +47,9 @@ server.post('/assistant', (req, res) =>{
         var obj = JSON.parse(fs.readFileSync('permission.json'));
         res.send(obj);
     }
+    else{
+        console.log(req.body)
+    }
 });
 
 server.listen((process.env.PORT || 8000), ()=>{
