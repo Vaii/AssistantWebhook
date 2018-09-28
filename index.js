@@ -18,7 +18,7 @@ server.post('/assistant', (req, res) =>{
     let data = '';
     http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&units=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
 
-
+        console.log(req.param('City'));
         resp.on('data', (chunk) => {
             data += chunk;
         });
@@ -26,6 +26,7 @@ server.post('/assistant', (req, res) =>{
         resp.on('end', () => {
             console.log(JSON.parse(data).main.temp);
             console.log(citytoSearch);
+            console.log(req.body.get)
 
             return res.json({
                 fulfillmentText: "the weather in " + citytoSearch + " is " + String(JSON.parse(data).main.temp) + " degrees",
