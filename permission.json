@@ -1,5 +1,5 @@
 {
-  "speech": "PLACEHOLDER_FOR_PERMISSION",
+  "fulfillmentText": "We'd like to get your permission",
   "contextOut": [
     {
       "name": "_actions_on_google_",
