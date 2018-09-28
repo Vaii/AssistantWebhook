@@ -16,6 +16,7 @@ server.post('/assistant', (req, res) =>{
 
     let action = req.body.queryResult && req.body.queryResult.action ;
 
+    console.log(req.body)
     if(action === "getWeather"){
 
         let citytoSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.City ? req.body.queryResult.parameters.City : 'Eindhoven';
@@ -47,9 +48,10 @@ server.post('/assistant', (req, res) =>{
         var obj = JSON.parse(fs.readFileSync('permission.json'));
         res.send(obj);
     }
-    else{
+
+        console.log("else");
         console.log(req.body)
-    }
+
 });
 
 server.listen((process.env.PORT || 8000), ()=>{
