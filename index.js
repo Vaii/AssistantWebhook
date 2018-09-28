@@ -47,10 +47,12 @@ server.post('/assistant', (req, res) =>{
 
         var obj = JSON.parse(fs.readFileSync('permission.json'));
         res.send(obj);
+    }else {
+        return res.json({
+            fullfillmentText: "ok thank you for your information",
+            source: "food"
+        });
     }
-
-        console.log("else");
-        console.log(req.body)
 
 });
 
