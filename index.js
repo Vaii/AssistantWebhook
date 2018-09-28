@@ -3,7 +3,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
-const fs = require('fs');
 
 const server = express();
 server.use(bodyParser.urlencoded({
@@ -28,18 +27,8 @@ server.post('/assistant', (req, res) =>{
             console.log(JSON.parse(data).main.temp);
             console.log(citytoSearch);
 
-            //let rawdata = fs.readFileSync('response.json');
-            //let response = JSON.parse(rawdata);
-            //console.log(response);
-
-            //response.payload.google.richResponse.items[0].simpleResponse.textToSpeech = "The weather in " + citytoSearch + " is: " + String(JSON.parse(data).main.temp);
-            //console.log(response.payload.google.richResponse.items[0].simpleResponse.textToSpeech)
-
-
-            //res.send(response);
-
             return res.json({
-                fulfillmentText: "the weather in " + citytoSearch + " is " + String(JSON.parse(data).main.temp),
+                fulfillmentText: "the weather in " + citytoSearch + " is " + String(JSON.parse(data).main.temp) + " degrees",
                 source: 'weather'
             });
         });
