@@ -1,12 +1,5 @@
 {
   "fulfillmentText": "We'd like to get your permission",
-  "contextOut": [
-    {
-      "name": "_actions_on_google_",
-      "lifespan": 100,
-      "parameters": {}
-    }
-  ],
   "data": {
     "google": {
       "expect_user_response": true,
