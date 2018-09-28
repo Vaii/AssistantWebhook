@@ -16,7 +16,6 @@ server.post('/assistant', (req, res) =>{
 
     let action = req.body.queryResult && req.body.queryResult.action ;
 
-    console.log(req.body)
     if(action === "getWeather"){
 
         let citytoSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.City ? req.body.queryResult.parameters.City : 'Eindhoven';
@@ -49,7 +48,7 @@ server.post('/assistant', (req, res) =>{
         res.send(obj);
     }else {
         return res.json({
-            fullfillmentText: "ok thank you for your information",
+            fulfillmentText: "ok thank you for your information",
             source: "food"
         });
     }
