@@ -44,8 +44,32 @@ server.post('/assistant', (req, res) =>{
     }else if(action === "getLocation"){
 
         res.json({
-            context: "To know your location",
-            permissions: ['NAME' , 'DEVICE__PRECISE_LOCATION'],
+            conversationToken: "{\"state\":null,\"data\":{}}",
+            expectUserResponse: true,
+            expectedInputs: [
+                {
+                    inputPrompt: {
+                        initialPrompts: [
+                            {
+                                "textToSpeech": "PLACEHOLDER_FOR_PERMISSION"
+                            }
+                        ],
+                        noInputPrompts: []
+                    },
+                    possibleIntents: [
+                        {
+                            intent: "actions.intent.PERMISSION",
+                            inputValueData: {
+                                optContext: "To deliver your order",
+                                permissions: [
+                                    "NAME",
+                                    "DEVICE_PRECISE_LOCATION",
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         });
     }
 });
