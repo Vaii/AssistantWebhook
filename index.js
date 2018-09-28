@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
+const fs = require('fs');
 
 const server = express();
 server.use(bodyParser.urlencoded({
@@ -13,7 +14,7 @@ server.use(bodyParser.json());
 
 server.post('/assistant', (req, res) =>{
 
-    console.log(req.body.queryResult.action);
+    console.log(req.body);
     let action = req.body.queryResult && req.body.queryResult.action ;
 
     if(action === "getWeather"){
@@ -23,6 +24,7 @@ server.post('/assistant', (req, res) =>{
         let data = '';
         http.get('http://api.openweathermap.org/data/2.5/weather?q=' + citytoSearch +'&units=metric&appid=004f84a325e90cf982bfb35ddc63c3f5', (resp) => {
 
+            console.log(req.params.City);
             resp.on('data', (chunk) => {
                 data += chunk;
             });
@@ -43,34 +45,8 @@ server.post('/assistant', (req, res) =>{
         });
     }else if(action === "getLocation"){
 
-        res.json({
-            conversationToken: "{\"state\":null,\"data\":{}}",
-            expectUserResponse: true,
-            expectedInputs: [
-                {
-                    inputPrompt: {
-                        initialPrompts: [
-                            {
-                                "textToSpeech": "PLACEHOLDER_FOR_PERMISSION"
-                            }
-                        ],
-                        noInputPrompts: []
-                    },
-                    possibleIntents: [
-                        {
-                            intent: "actions.intent.PERMISSION",
-                            inputValueData: {
-                                optContext: "To deliver your order",
-                                permissions: [
-                                    "NAME",
-                                    "DEVICE_PRECISE_LOCATION",
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
-        });
+        var obj = JSON.parse(fs.readFileSync('permission.json'));
+        res.send(obj);
     }
 });
 
