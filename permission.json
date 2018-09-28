@@ -14,7 +14,11 @@
       "systemIntent": {
         "intent": "actions.intent.PERMISSION",
         "data": {
-          "@type": "type.googleapis.com/google.actions.v2.PermissionValueSpec"
+          "@type": "type.googleapis.com/google.actions.v2.PermissionValueSpec",
+          "permissions": [
+            "NAME",
+            "DEVICE_PRECISE_LOCATION"
+          ]
         }
       }
     }
