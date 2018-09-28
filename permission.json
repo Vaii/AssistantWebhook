@@ -11,7 +11,7 @@
             "UPDATE"
           ],
           "updatePermissionValueSpec": {
-            "intent": "notification_simple_text"
+            "intent": "food_intent_yes"
           }
         }
       }
