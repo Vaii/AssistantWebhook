@@ -17,7 +17,7 @@ server.use(bodyParser.urlencoded({
 
 server.use(bodyParser.json());
 
-app.intent('food', conv =>{
+app.intent('food intent', conv =>{
     conv.ask(new Permission({
         context: 'To greet you personally',
         permissions: 'NAME'
