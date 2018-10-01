@@ -6,6 +6,8 @@ const http = require('http');
 const fs = require('fs');
 
 const {dialogflow, Image} = require('actions-on-google');
+const functions = require('firebase-functions')
+
 
 const app = dialogflow();
 
