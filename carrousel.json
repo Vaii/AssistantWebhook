@@ -1,5 +1,4 @@
 {
-  "conversationToken": "{\"state\":null,\"data\":{}}",
   "expectUserResponse": true,
   "expectedInputs": [
     {
