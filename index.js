@@ -1,7 +1,5 @@
 'use strict';
 
-import {Permission} from "actions-on-google";
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
@@ -24,6 +22,16 @@ app.intent('food intent', conv =>{
         context: 'To greet you personally',
         permissions: 'NAME'
     }))
+})
+
+app.intent('get_permission', (conv, input, granted) => {
+    if (granted) {
+        conv.close(`Hi ${conv.user.name.display}!`)
+    } else {
+        // was not granted permission to get name
+        // so instead, provide a generic hello
+        conv.close(`Hello!`)
+    }
 })
 
 
