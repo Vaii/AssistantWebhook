@@ -46,13 +46,21 @@ server.post('/assistant', (req, res) =>{
 
         var obj = JSON.parse(fs.readFileSync('permission.json'));
         res.send(obj);
+    }else if(action === "AssistanceIntent.AssistanceIntent-custom")
+    {
+        console.log(req);
+        let id = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.given_name ? req.body.queryResult.parameters.given_name : null;
+
+        let userFirstName = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.given_name ? req.body.queryResult.parameters.given_name : null;
+        let userLastName = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.last_name ? req.body.queryResult.parameters.last_name : null;
+        let age = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.age ? req.body.queryResult.parameters.age : null;
+        let country = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.geo_country ? req.body.queryResult.parameters.geo_country : null;
     }else {
         return res.json({
             fulfillmentText: "ok thank you for your information",
             source: "food"
         });
     }
-
 });
 
 server.listen((process.env.PORT || 8000), ()=>{
