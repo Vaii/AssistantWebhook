@@ -17,15 +17,18 @@ server.use(bodyParser.urlencoded({
 
 server.use(bodyParser.json());
 
-server.post('/assistant', app =>{
+app.intent('food', conv =>{
+    conv.ask(new Permission({
+        context: 'To greet you personally',
+        permissions: 'NAME'
+    }))
+})
 
 
-    app.intent('food', conv =>{
-        conv.ask(new Permission({
-            context: 'To greet you personally',
-            permissions: 'NAME',
-        }))
-    })
+
+server.post('/assistant', app)
+
+
 
     //let action = req.body.queryResult && req.body.queryResult.action ;
     // if(action === "getWeather"){
@@ -61,9 +64,6 @@ server.post('/assistant', app =>{
     //         source: "food"
     //     });
     // }
-
-});
-
 server.listen((process.env.PORT || 8000), ()=>{
     console.log("Server is up and running...")
 });
