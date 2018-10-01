@@ -44,7 +44,7 @@ server.post('/assistant', (req, res) =>{
         });
     }else if(action === "getLocation"){
 
-        var obj = JSON.parse(fs.readFileSync('carrousel.json'));
+        var obj = JSON.parse(fs.readFileSync('permission.json'));
         res.send(obj);
     }else {
         return res.json({
